@@ -1,0 +1,65 @@
+{
+  "id": "2004596",
+  "name": "nuxt",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "2188989",
+      "name": "邮箱",
+      "font_class": "youxiang",
+      "unicode": "e7eb",
+      "unicode_decimal": 59371
+    },
+    {
+      "icon_id": "4330582",
+      "name": "微信",
+      "font_class": "weixin",
+      "unicode": "e619",
+      "unicode_decimal": 58905
+    },
+    {
+      "icon_id": "15548833",
+      "name": "Logo GitHub",
+      "font_class": "huaban88",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
+      "icon_id": "15014",
+      "name": "about",
+      "font_class": "about",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "2291172",
+      "name": "login",
+      "font_class": "login",
+      "unicode": "e6d5",
+      "unicode_decimal": 59093
+    },
+    {
+      "icon_id": "11931885",
+      "name": "link",
+      "font_class": "insertlink",
+      "unicode": "e621",
+      "unicode_decimal": 58913
+    },
+    {
+      "icon_id": "12446906",
+      "name": "register",
+      "font_class": "register",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "13510819",
+      "name": "home",
+      "font_class": "shouye",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shaobing.dao.BlogMapper">
+<!--    将查询字段写出来-->
+    <sql id="getFields">
+        id,user_id,title,description,content,created,status,sid
+    </sql>
+<!--    获取所有博客-->
+    <select id="getBlogBySid" resultType="blog">
+        select * from `m_blog` where sid = #{sid}
+    </select>
+<!--    根据分页获取博客-->
+    <select id="getBlogById" resultType="blog">
+        select * from m_blog where id = #{id}
+    </select>
+<!--    !=2代表可以显示-->
+    <select id="getBlogsBySid" resultType="blog">
+        select <include refid="getFields"></include>
+        from m_blog
+        where status!=2
+        <if test="sid!=0">
+            and sid = #{sid}
+        </if>
+        order by created desc
+        limit #{offset},#{limit}
+    </select>
+<!--    获取博客数量-->
+    <select id="getBlogsRows" resultType="int">
+        select count(id)
+        from m_blog
+        where status!=2
+        and sid =#{sid}
+    </select>
+</mapper>

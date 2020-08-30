@@ -1,0 +1,6 @@
+com\shaobing\spring\TestLifeCycle.class
+com\shaobing\aop\TestAop.class
+com\shaobing\spring\TestPropertyAutowired.class
+com\shaobing\spring\TestPropertyValues.class
+com\shaobing\spring\TestXml.class
+com\shaobing\tx\TxTest.class

@@ -1,0 +1,23 @@
+{
+  "id": "1980152",
+  "name": "blog1",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon",
+  "description": "用于blog1的图标",
+  "glyphs": [
+    {
+      "icon_id": "3543451",
+      "name": "登录",
+      "font_class": "denglu",
+      "unicode": "e662",
+      "unicode_decimal": 58978
+    },
+    {
+      "icon_id": "15296782",
+      "name": "密 码",
+      "font_class": "mima",
+      "unicode": "e65d",
+      "unicode_decimal": 58973
+    }
+  ]
+}
