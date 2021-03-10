@@ -1,7 +1,5 @@
 package algorithm.tree;
-
 import java.util.Stack;
-
 /**
  * 假设遍历 {1,3,4,5,6,8,9,15};
  *              1

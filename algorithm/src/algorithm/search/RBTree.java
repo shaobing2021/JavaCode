@@ -10,7 +10,6 @@ import java.util.Scanner;
  * @param <V>
  */
 public class RBTree<K extends Comparable<K>,V> {
-
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         RBTree<String, Object> rbt = new RBTree<>();
@@ -20,7 +19,6 @@ public class RBTree<K extends Comparable<K>,V> {
             System.out.println();
             rbt.insert(key,null);
             TreeOperation.show(rbt.getRoot());
-
         }
     }
 
@@ -72,8 +70,11 @@ public class RBTree<K extends Comparable<K>,V> {
 //            修复红黑树平衡方法
         insertFixup(node);
     }
-
     /**
+     *
+     *   2黑色
+     * 1红色    3红色
+     *             4红色
      * 插入后修复红黑树平衡方法
      * 1.红黑树为空树，将根节点染色为黑色
      * 2.插入节点的key已经存在，上面已经处理过
@@ -186,7 +187,7 @@ public class RBTree<K extends Comparable<K>,V> {
         y.left = x;
     }
     /**
-     * 左旋
+     * 右旋
      *                                   p           p
      *                                   y           x
      *                                 x   ry      lx   y
