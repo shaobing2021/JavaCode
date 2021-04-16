@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.amqp.SimpleRabbitListenerContainerFactoryConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
 import java.util.HashMap;
 import java.util.Map;
 @Slf4j
@@ -58,7 +57,6 @@ public class RabbitmqConfig {
         factory.setPrefetchCount(15);
         return factory;
     }
-
     @Bean
     public RabbitTemplate rabbitTemplate(){
         connectionFactory.setPublisherConfirms(true);
@@ -79,8 +77,6 @@ public class RabbitmqConfig {
         });
         return rabbitTemplate;
     }
-
-
     //1.死信交换机+死信路由==>死信队列
     @Bean
     public Queue successKillDeadQueue(){
