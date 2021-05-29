@@ -1,0 +1,138 @@
+###同时满足条件
+GET http://192.168.11.130:9200/shopping/_search
+Cache-Control: no-cache
+Accept: */*
+Content-Type: application/json
+
+{"query":{"bool":{"must":[{"match": {"category": "小米"}},{"match": {"price": "1"}}]}}}
+
+###两者满足其一
+GET http://192.168.11.130:9200/shopping/_search
+Cache-Control: no-cache
+Accept: */*
+Content-Type: application/json
+
+{"query":{"bool":{"should":[{"match": {"category": "小米"}},{"match": {"price": "1"}}]}}}
+
+<> 2021-04-18T015049.200.json
+
+###过滤查询
+GET http://192.168.11.130:9200/shopping/_search
+Cache-Control: no-cache
+Accept: */*
+Content-Type: application/json
+
+{"query":{"bool":{"should":[{"match": {"category": "小米"}}],"filter": {"range": {"price":{"gt": 3000} }}}}}
+
+<> 2021-04-18T022414.200.json
+<> 2021-04-18T022323.400.json
+
+###完全匹配高亮查询
+GET http://192.168.11.130:9200/shopping/_search
+Cache-Control: no-cache
+Accept: */*
+Content-Type: application/json
+
+{"query": {"match_phrase": {"category": "中米"}},"highlight": {"fields": {"category":{}}}}
+
+<> 2021-04-18T024712.200.json
+<> 2021-04-18T024500.200.json
+
+###聚合操作  price_group随意起名,terms分组,field分组字段,size只对统计结果输出
+GET http://192.168.11.130:9200/shopping/_search
+Cache-Control: no-cache
+Accept: */*
+Content-Type: application/json
+
+{"aggs": {"price_group": {"terms": {"field": "price"}}},"size": 0}
+
+<> 2021-04-18T025406.200.json
+<> 2021-04-18T025251.200.json
+
+###avg平均值
+GET http://192.168.11.130:9200/shopping/_search
+Cache-Control: no-cache
+Accept: */*
+Content-Type: application/json
+
+{"aggs": {"price_avg": {"avg": {"field": "price"}}},"size": 0}
+
+<> 2021-04-18T025536.200.json
+
+###映射关系 1 先创建user
+PUT http://192.168.11.130:9200/user
+Cache-Control: no-cache
+Accept: */*
+Content-Type: application/json
+
+###2  index:true表示可以索引查询
+PUT http://192.168.11.130:9200/user/_mapping
+Cache-Control: no-cache
+Accept: */*
+Content-Type: application/json
+
+{"properties": {"name": {"type": "text","index": "true"},"sex":{"type": "keyword","index": true},"tel": {"type": "keyword","index": false}}}
+
+<> 2021-04-18T033402.200.json
+###3 查看put的mapping
+GET http://192.168.11.130:9200/user/_mapping
+Cache-Control: no-cache
+Accept: */*
+Content-Type: application/json
+
+<> 2021-04-18T033425.200.json
+###4 放入数据
+POST http://192.168.11.130:9200/user/_doc/3
+Cache-Control: no-cache
+Accept: */*
+Content-Type: application/json
+
+{  "name":"oppo手机",  "sex":"女的",  "tel": "136" }
+
+<> 2021-04-18T034706.200.json
+<> 2021-04-18T034651.409.json
+<> 2021-04-18T034625.409.json
+
+
+###5 查询   有分词效果，通过小查到小米
+GET http://192.168.11.130:9200/user/_search
+Cache-Control: no-cache
+Accept: */*
+Content-Type: application/json
+
+{"query": {"match": {"name": "小"}}}
+<> 2021-04-18T034716.200.json
+<> 2021-04-18T034541.200.json
+<> 2021-04-18T034421.200.json
+
+###
+###5 查询   有分词效果，通过小查到小米
+GET http://192.168.11.130:9200/user/_search
+Cache-Control: no-cache
+Accept: */*
+Content-Type: application/json
+
+{"query": {"match": {"name": "小"}}}
+
+###查询 通过女查不到女的，必须完全匹配
+GET http://192.168.11.130:9200/user/_search
+Cache-Control: no-cache
+Accept: */*
+Content-Type: application/json
+
+{"query": {"match": {"sex": "女的"}}}
+
+<> 2021-04-18T034835.200.json
+<> 2021-04-18T034805.200.json
+
+###查询 通过电话查询，不能查询，因为电话没被索引，索引分三种：分词索引，完全索引，不被索引
+GET http://192.168.11.130:9200/user/_search
+Cache-Control: no-cache
+Accept: */*
+Content-Type: application/json
+
+{"query": {"match": {"tel": "136"}}}
+
+<> 2021-04-18T034859.400.json
+
+###

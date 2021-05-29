@@ -1,0 +1,107 @@
+###访问es
+GET http://192.168.11.130:9200/
+Cache-Control: no-cache
+Accept: */*
+Content-Type: application/json
+
+###查看所有索引
+GET http://192.168.11.130:9200/_cat/indices?v
+Cache-Control: no-cache
+Accept: */*
+Content-Type: application/json
+
+###查看shopping索引
+GET http://192.168.11.130:9200/shopping/
+Cache-Control: no-cache
+Accept: */*
+Content-Type: application/json
+
+###查看所有文档
+GET http://192.168.11.130:9200/d1/_search
+Cache-Control: no-cache
+Accept: */*
+Content-Type: application/json
+
+###获取某个文档
+GET http://192.168.11.130:9200/d1/_doc/1001
+Cache-Control: no-cache
+Accept: */*
+Content-Type: application/json
+
+
+###高级查询通过get
+GET http://192.168.11.130:9200/shopping/_search?q=title:华为
+Cache-Control: no-cache
+Accept: */*
+
+###高级查询通过get
+GET http://192.168.11.130:9200/shopping/_search
+Cache-Control: no-cache
+Accept: */*
+Content-Type: application/json
+
+{"query": {"match": {"category": "中米"}}}
+###高级查询所有，但是数据量太多
+GET http://192.168.11.130:9200/d1/_search
+Cache-Control: no-cache
+Accept: */*
+Content-Type: application/json
+
+{"query": {"match_all": {}}}
+###高级查询所有
+GET http://192.168.11.130:9200/shopping/_search
+Cache-Control: no-cache
+Accept: */*
+Content-Type: application/json
+
+{"query": {"match_all": {}},"from": 2,"size": 2, "_source":["title"],"sort": {"price": {"order": "desc"}}}
+
+###想要查询第二页的两条数据，计算公式(页码-1)*每页数据,_source：指定需要的字段
+<> 2021-04-18T124734.200.json
+<> 2021-04-18T124726.200.json
+<> 2021-04-18T124719.200.json
+
+###put更新doc，只能全量更新
+PUT http://192.168.11.130:9200/d1/_doc/6
+Cache-Control: no-cache
+Accept: */*
+Content-Type: application/json
+
+{"name":"张三23","sex":"男","age":30}
+
+<> 2021-04-18T120221.201.json
+###post更新doc
+POST http://192.168.11.130:9200/shopping/_update/1
+Cache-Control: no-cache
+Accept: */*
+Content-Type: application/json
+
+{"doc":{  "title":"华为手机" }}
+
+<> 2021-04-17T091409.200.json
+
+###
+PUT http://192.168.11.130:9200/shopping/_update/1
+Cache-Control: no-cache
+Accept: */*
+Content-Type: application/json
+
+{"doc":{  "title":"垃圾收集" }}
+
+<> 2021-04-17T104017.405.json
+<> 2021-04-17T104009.200.json
+###删除文档
+DELETE http://192.168.11.130:9200/shopping/_doc/1
+Cache-Control: no-cache
+Accept: */*
+Content-Type: application/json
+
+<> 2021-04-17T110539.404.json
+<> 2021-04-17T110432.200.json
+
+###删除索引
+DELETE http://192.168.11.130:9200/user
+Cache-Control: no-cache
+Accept: */*
+
+###

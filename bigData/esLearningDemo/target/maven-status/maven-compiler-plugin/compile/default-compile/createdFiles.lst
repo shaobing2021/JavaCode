@@ -1,0 +1,12 @@
+com\shaobing\es\test\ESTest_Client.class
+com\shaobing\es\test\ESTest_Doc_Insert_Batch.class
+com\shaobing\es\test\ESTest_Index_Search.class
+com\shaobing\es\test\ESTest_Doc_Delete.class
+com\shaobing\es\test\ESTest_Index_Delete.class
+com\shaobing\es\test\ESTest_Doc_Insert.class
+com\shaobing\es\test\ESTest_Doc_Get.class
+com\shaobing\es\test\ESTest_Doc_Query.class
+com\shaobing\es\test\ESTest_Doc_Delete_Batch.class
+com\shaobing\es\pojo\User.class
+com\shaobing\es\test\ESTest_Doc_Update.class
+com\shaobing\es\test\ESTest_Index_Create.class
